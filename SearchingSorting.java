@@ -64,6 +64,19 @@ public class SearchingSorting{
                     }
                     System.out.println("\n\n");                    
                     break;
+                case "4":
+                int firstArray[] = {-7, 1, -81, -56, -91, 37, 41, 28, 34, -27};
+                System.out.println("\n\nData set before quicksort:");
+                for(int i=0; i<firstArray.length; i++){
+                    System.out.print(firstArray[i] + " ");
+                }
+                int secondArray[] = quickSort(firstArray, 0, firstArray.length - 1);
+                System.out.println("\n\n\nData set after quicksort:");
+                for(int i=0; i<secondArray.length; i++){
+                    System.out.print(secondArray[i] + " ");
+                }
+                System.out.println("\n\n");
+                break;
             }
         }
         
@@ -109,7 +122,7 @@ public class SearchingSorting{
     }
 
     //--------------INSERTION SORT-----------------// 
-
+    
     public static int[] insertionSort(int[] A){
         int n = A.length;
         for (int i=1; i<n; i++) {
@@ -121,6 +134,36 @@ public class SearchingSorting{
                 j--;
             }
             A[j+1] = key;
+        }
+        return A;
+    }
+    
+    //--------------QUICK SORT-----------------//
+
+    public static int pi(int[] arr, int l, int r){
+        int temp;
+        int pivot = arr[r];
+        int i = l-1;
+
+        for(int j=l; j<r; j++){
+            if(arr[j] < pivot){
+                i++;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        temp = arr[i+1];
+        arr[i+1] = arr[r];
+        arr[r] = temp;
+        return i+1;
+    }
+
+    public static int[] quickSort(int[] A, int l, int r){
+        if(l<r){
+            int partitionIndex = pi(A, l, r);
+            quickSort(A, l, partitionIndex-1);
+            quickSort(A, partitionIndex+1, r);
         }
         return A;
     }
