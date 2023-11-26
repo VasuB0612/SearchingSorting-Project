@@ -35,13 +35,29 @@ public class SearchingSorting{
                         System.out.println("\nNot Found\n");
                     }
                     break;
+                case "2":
+                    System.out.print("In the list there are 0, ..., 9; which value would you like to search with linear search? ");
+                    int numToBeSearched;
+                    try {
+                        numToBeSearched = Integer.parseInt(scanner.nextLine());
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    boolean isPresent = BinarySearch(numToBeSearched);
+                    if(isPresent){
+                        System.out.println("\nFound\n");
+                    } 
+                    else{
+                        System.out.println("\nNot Found\n");
+                    }
+                    break;
             }
         }
         
     }
-    
-    //--------------LINEAR SEARCH-----------------// 
 
+    //--------------LINEAR SEARCH-----------------// 
+    
     public static boolean LinearSearch(int num){
         int numArray[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         for(int i=0; i<numArray.length; i++)
@@ -53,6 +69,32 @@ public class SearchingSorting{
         }
         return false;
     }
+    
+    //--------------LINEAR SEARCH-----------------// 
+
+    public static boolean BinarySearch(int target){
+        int numArray[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int length_of_array = numArray.length;
+
+        int low = 0;
+        int high = length_of_array - 1;
+        while(low <= high){
+
+            int mid = low + (high - low)/2;
+
+            if(numArray[mid] == target){
+                return true;
+            }
+            else if(target > numArray[mid]){
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
 }
 
             
