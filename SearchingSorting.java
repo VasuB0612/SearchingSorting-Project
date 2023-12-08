@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SearchingSorting{
@@ -9,7 +8,7 @@ public class SearchingSorting{
     // --------------COMMAND LINE INTERFACE-----------------//
 
         while(true){
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println("Menu of searching and sorting test bed." + "\n");
             System.out.println("1)   Linear Searching");
             System.out.println("2)   Binary Searching");
@@ -105,7 +104,7 @@ public class SearchingSorting{
     //--------------LINEAR SEARCH TIER 1-----------------// 
     
     public static boolean LinearSearch(int num){
-        int numArray[] = {10};
+        int numArray[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         for(int i=0; i<numArray.length; i++)
         {
             if(numArray[i] == num)
@@ -210,6 +209,61 @@ public class SearchingSorting{
         return A;
     }
 
+    // --------------Merge Sort-----------------//    
+    public static void mergeSort(int[] array) {
+        if (array == null || array.length <= 1) {
+            return;
+        }
+
+        int n = array.length;
+        int[] temp = new int[n];
+        mergeSortHelper(array, temp, 0, n - 1);
+    }
+
+    private static void mergeSortHelper(int[] array, int[] temp, int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+
+            mergeSortHelper(array, temp, left, mid);
+            mergeSortHelper(array, temp, mid + 1, right);
+            merge(array, temp, left, mid, right);
+        }
+    }
+
+    private static void merge(int[] array, int[] temp, int left, int mid, int right) {
+        for (int i = left; i <= right; i++) {
+            temp[i] = array[i];
+        }
+
+        int i = left;
+        int j = mid + 1;
+        int k = left;
+
+        while (i <= mid && j <= right) {
+            if (temp[i] <= temp[j]) {
+                array[k] = temp[i];
+                i++;
+            } else {
+                array[k] = temp[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= mid) {
+            array[k] = temp[i];
+            i++;
+            k++;
+        }
+
+        while (j <= right) {
+            array[k] = temp[j];
+            j++;
+            k++;
+        }
+    }
+
+
     // --------------Generating Random Array-----------------//    
 
     private static int[] generateRandomArray(int size) {
@@ -239,7 +293,7 @@ public class SearchingSorting{
         }
         System.out.print("                                     ");
         for (int size : dataSetSizes) {
-            System.out.print(size + "       ");
+            System.out.print(size + "         ");
         }
         System.out.println("\n");
 
@@ -268,7 +322,7 @@ public class SearchingSorting{
         // Elapsed times
         System.out.print("bubbleSort,random,ms                 ");
         for (long time : elapsedTimes1) {
-            System.out.print(time + "          ");
+            System.out.print(time + "           ");
         }
         System.out.println("\n");
 
@@ -297,10 +351,39 @@ public class SearchingSorting{
         // Elapsed times
         System.out.print("insertionSort,random,ms              ");
         for (long time : elapsedTimes2) {
-            System.out.print(time + "          ");
+            System.out.print(time + "           ");
         }
         System.out.println("\n"); 
 
+        // For merge sort
+        for (int i = 1; i <= 10; i++) {
+            int size = n * i;
+            int[] arr = generateRandomArray(size);
+    
+            comparisonCounter.resetComparisonCount();
+            long startTime = System.currentTimeMillis();
+            quickSort(arr, 0, arr.length - 1);
+            long endTime = System.currentTimeMillis();
+            long elapsedTime = endTime - startTime;
+    
+            comparisonCounts4[i - 1] = comparisonCounter.getComparisonCount();
+            elapsedTimes4[i - 1] = elapsedTime;
+        }
+    
+        // Comparison counts
+        System.out.print("mergeSort,random,comparisons         ");
+        for (long count : comparisonCounts4) {
+            System.out.print(count + "      ");
+        }
+        System.out.println("\n");
+    
+        // Elapsed times
+        System.out.print("mergeSort,random, ms                 ");
+        for (long time : elapsedTimes4) {
+            System.out.print(time + "           ");
+        }
+        System.out.println("\n");
+         
         // For quick sort
         for (int i = 1; i <= 10; i++) {
             int size = n * i;
@@ -324,11 +407,12 @@ public class SearchingSorting{
         System.out.println("\n");
     
         // Elapsed times
-        System.out.print("quickSort,random, ms                ");
+        System.out.print("quickSort,random, ms                 ");
         for (long time : elapsedTimes3) {
-            System.out.print(time + "         ");
+            System.out.print(time + "           ");
         }
         System.out.println("\n"); 
+
     }
     
 }
