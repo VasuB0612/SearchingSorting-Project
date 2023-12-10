@@ -209,7 +209,7 @@ public class SearchingSorting{
         return A;
     }
 
-    // --------------Merge Sort-----------------//    
+    // --------------MERGE SORT-----------------//    
     public static void mergeSort(int[] array) {
         if (array == null || array.length <= 1) {
             return;
@@ -269,7 +269,7 @@ public class SearchingSorting{
     private static int[] generateRandomArray(int size) {
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = (int) (Math.random() * 10);
+            array[i] = (int) (Math.random()*2);
         }
         return array;
     }
@@ -315,14 +315,14 @@ public class SearchingSorting{
         // Comparison counts
         System.out.print("bubbleSort,random,comparisons        ");
         for (long count : comparisonCounts1) {
-            System.out.print(count + "      ");
+            System.out.print(count + "    ");
         }
-        System.out.println();
+        System.out.println("\n");
     
         // Elapsed times
         System.out.print("bubbleSort,random,ms                 ");
         for (long time : elapsedTimes1) {
-            System.out.print(time + "           ");
+            System.out.print(time + "          ");
         }
         System.out.println("\n");
 
@@ -344,7 +344,7 @@ public class SearchingSorting{
         // Comparison counts
         System.out.print("insertionSort,random,comparisons     ");
         for (long count : comparisonCounts2) {
-            System.out.print(count + "      ");
+            System.out.print(count + "     ");
         }
         System.out.println("\n");
     
@@ -373,7 +373,7 @@ public class SearchingSorting{
         // Comparison counts
         System.out.print("mergeSort,random,comparisons         ");
         for (long count : comparisonCounts4) {
-            System.out.print(count + "      ");
+            System.out.print(count + "    ");
         }
         System.out.println("\n");
     
@@ -402,7 +402,7 @@ public class SearchingSorting{
         // Comparison counts
         System.out.print("quickSort,random,comparisons         ");
         for (long count : comparisonCounts3) {
-            System.out.print(count + "      ");
+            System.out.print(count + "    ");
         }
         System.out.println("\n");
     
