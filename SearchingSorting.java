@@ -240,6 +240,7 @@ public class SearchingSorting{
         int k = left;
 
         while (i <= mid && j <= right) {
+            comparisonCounter.incrementComparisonCount();
             if (temp[i] <= temp[j]) {
                 array[k] = temp[i];
                 i++;
@@ -269,7 +270,7 @@ public class SearchingSorting{
     private static int[] generateRandomArray(int size) {
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = (int) (Math.random()*2);
+            array[i] = (int) (Math.random()*10);
         }
         return array;
     }
@@ -362,7 +363,7 @@ public class SearchingSorting{
     
             comparisonCounter.resetComparisonCount();
             long startTime = System.currentTimeMillis();
-            quickSort(arr, 0, arr.length - 1);
+            mergeSort(arr);
             long endTime = System.currentTimeMillis();
             long elapsedTime = endTime - startTime;
     
@@ -373,7 +374,7 @@ public class SearchingSorting{
         // Comparison counts
         System.out.print("mergeSort,random,comparisons         ");
         for (long count : comparisonCounts4) {
-            System.out.print(count + "    ");
+            System.out.print(count + "        ");
         }
         System.out.println("\n");
     
