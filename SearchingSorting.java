@@ -294,7 +294,7 @@ public class SearchingSorting{
         }
         System.out.print("                                     ");
         for (int size : dataSetSizes) {
-            System.out.print(size + "         ");
+            System.out.print(size + "        ");
         }
         System.out.println("\n");
 
